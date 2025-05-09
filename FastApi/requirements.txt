@@ -1,0 +1,6 @@
+fastapi
+sqlalchemy
+pydantic
+uvicorn
+alembic # for table modification adding or deleting columns
+pymysql #for connecting to mysql
