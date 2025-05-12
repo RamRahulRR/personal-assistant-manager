@@ -7,15 +7,10 @@ python-dotenv
 alembic                      
 annotated-types              
 anyio                         
-asgiref                       
-boto3                         
-botocore                      
-Django                        
+asgiref                                              
+botocore                                             
 django-cors-headers           
-djangorestframework           
-djangorestframework_simplejwt 
-fastapi                                        
-mysqlclient                   
+fastapi                                                           
 pip                           
 pydantic                      
 pydantic_core                 
@@ -30,3 +25,4 @@ typing-inspection
 urllib3                      
 uvicorn   
 whitenoise
+gunicorn
