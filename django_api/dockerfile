@@ -6,6 +6,15 @@ ENV PYTHONUNBUFFERED 1
 
 WORKDIR /app
 
+# Install system dependencies needed by mysqlclient
+# The below dependecies were added to resolve the errors in docker compose file at EC2
+RUN apt-get update && apt-get install -y \
+    gcc \
+    default-libmysqlclient-dev \
+    pkg-config \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
@@ -15,5 +24,29 @@ COPY . .
 RUN python manage.py collectstatic --noinput
 
 CMD ["gunicorn", "django_api.wsgi:application", "--bind", "0.0.0.0:8000"]
+
+
+
+# The Below file is generated while doing the docker compose From EC2 after facing errors
+
+# FROM python:3.11-slim
+
+# WORKDIR /app
+
+# # Install system dependencies needed by mysqlclient
+# RUN apt-get update && apt-get install -y \
+#     gcc \
+#     default-libmysqlclient-dev \
+#     pkg-config \
+#     build-essential \
+#     && rm -rf /var/lib/apt/lists/*
+
+# COPY requirements.txt ./
+# RUN pip install --no-cache-dir -r requirements.txt
+
+# COPY . .
+
+# CMD ["gunicorn", "--bind", "0.0.0.0:8000", "personal_assistant_manager.wsgi:application"]
+
 
 
